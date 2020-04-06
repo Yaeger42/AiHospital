@@ -2,18 +2,17 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib import admin
 
 # Models
-from django.contrib.auth.models import User
 from doctor.models import Profile
 
 
 @admin.register(Profile)
 class ProfileDoctorAdmin(admin.ModelAdmin):
     """"Doctor admin profile"""
-    list_display = ('pk', 'user', 'phoneNumber', 'specialty', 'cedID', 'bday')
-    list_display_links = ('pk', 'user', 'cedID')
+    list_display = ('pk', 'user', 'phoneNumber', 'specialty', 'cedMed', 'bDay')
+    list_display_links = ('pk', 'user', 'cedMed')
     list_editable = ('phoneNumber', 'specialty')
 
-    search_fields = ('cedID', 'user__username', 'user__email', 'specialty')
+    search_fields = ('cedMed', 'user__username', 'user__email', 'specialty')
 
 
 class ProfileDoctorAdminInLine(admin.StackedInline):
@@ -36,5 +35,5 @@ class UserAdmin(BaseUserAdmin):
         'is_staff'
     )
 
-admin.site.unregister(User)
-admin.site.register(User, ProfileDoctorAdmin)
+admin.site.unregister(Profile)
+admin.site.register(Profile, ProfileDoctorAdmin)
