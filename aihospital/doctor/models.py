@@ -8,9 +8,6 @@ from django.db import models
 class Profile(models.Model):
     """"Profile model extends from User, this is a proxy model"""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # first_name = models.CharField(max_length=50, blank=False)
-    # last_name = models.CharField(max_length=50, blank=False)
-    # email = models.EmailField(max_length=254)
     phoneNumber = models.CharField(max_length=30, blank=True)
     specialty = models.CharField(max_length=60, blank=True)
     bDay = models.DateField(auto_now=False, auto_now_add=False)
