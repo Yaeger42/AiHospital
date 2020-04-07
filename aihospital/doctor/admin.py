@@ -1,6 +1,6 @@
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib import admin
-
+from django.contrib.auth.models import User
 # Models
 from doctor.models import Profile
 
@@ -8,11 +8,23 @@ from doctor.models import Profile
 @admin.register(Profile)
 class ProfileDoctorAdmin(admin.ModelAdmin):
     """"Doctor admin profile"""
-    list_display = ('pk', 'user', 'phoneNumber', 'specialty', 'cedMed', 'bDay')
+    list_display = ('pk', 'user', 'specialty', 'cedMed', 'phoneNumber', 'bDay',)
     list_display_links = ('pk', 'user', 'cedMed')
-    list_editable = ('phoneNumber', 'specialty')
+    list_editable = ('phoneNumber', 'specialty',)
 
-    search_fields = ('cedMed', 'user__username', 'user__email', 'specialty')
+    search_fields = ('cedMed', 'user__username', 'user__email', 'specialty',)
+
+    fieldsets = (
+        ('Profile', {
+            'fields': (('user', 'cedMed'),),
+        }),
+        ('Extra info', {
+            'fields': (('phoneNumber', 'specialty', 'bDay'),),
+        }),
+
+    )
+
+    readonly_fields = ('cedMed',)
 
 
 class ProfileDoctorAdminInLine(admin.StackedInline):
@@ -28,12 +40,12 @@ class UserAdmin(BaseUserAdmin):
     inlines = (ProfileDoctorAdminInLine,)
     list_display = (
         'username',
-        'email',
         'first_name',
         'last_name',
         'is_active',
-        'is_staff'
+        'is_staff',
     )
 
-admin.site.unregister(Profile)
-admin.site.register(Profile, ProfileDoctorAdmin)
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
