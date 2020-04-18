@@ -24,7 +24,10 @@ class SignupForm(forms.Form):
         max_length=70,
         widget=forms.EmailInput()
     )
-    bDay = forms.DateField(required=False, label='YYYY-MM-DD')
+    cedMed = forms.CharField(max_length=30, required=True, label='Medical ID license')
+    specialtyCed = forms.CharField(max_length=30, required=False, label='Specialty ID license')
+    bDay = forms.DateField(required=False, label='MM/DD/YYYY')
+
 
     def clean_username(self):
         """Username must be unique"""
@@ -58,4 +61,23 @@ class ProfileForm(forms.Form):
     specialty = forms.CharField(max_length=200, required=True, label='Specialty')
     phoneNumber = forms.CharField(max_length=30, required=True, label='Phone Number')
     cedMed = forms.CharField(max_length=30, required=True, label='Medical ID license')
-    bDay = forms.DateField(required=False, label='YYYY-MM-DD')
+    specialtyCed = forms.CharField(max_length=30, required=False, label='Specialty ID license')
+    bDay = forms.DateField(required=False, label='MM/DD/YYYY')
+
+
+'''
+
+<label for="bDay">Birthday</label>
+            <div class = "form-group">
+                <input class="form-control" type="date" placeholder="Birthday" name="bDay" id="bDay">
+            </div>
+
+
+<div class = "form-group">
+                <input class="form-control" type="text" placeholder="Medical ID" name="cedMed">
+            </div>
+
+            <div class = "form-group">
+                <input class="form-control" type="text" placeholder="Specialty ID" name="specialtyCed" id="specialty">
+            </div>
+'''
