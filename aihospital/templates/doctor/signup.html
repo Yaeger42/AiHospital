@@ -1,0 +1,57 @@
+{% extends "doctor/base.html" %}
+
+{% block head_content %}
+<title>Platzigram sign up</title>
+{% endblock %}
+
+{% block container %}
+    <br>
+    <br>
+    <br>
+    <br>
+<br>
+
+        <form action="{% url 'doctor:signup' %}" method="POST">
+            {% csrf_token %}
+
+            <div class = "form-group">
+                <input class="form-control" type="text" placeholder="Username" name="username">
+            </div>
+
+            <div class = "form-group">
+                <input class="form-control" type="password" placeholder="Password" name="password">
+            </div>
+
+            <div class = "form-group">
+                <input class="form-control" type="password" placeholder="Password confirmation" name="passwordConfirmation">
+            </div>
+
+            <div class = "form-group">
+                <input class="form-control" type="text" placeholder="First Name" name="first_name">
+            </div>
+
+            <div class = "form-group">
+                <input class="form-control" type="text" placeholder="Last Name" name="last_name">
+            </div>
+
+            <div class = "form-group">
+                <input class="form-control" type="email" placeholder="Email" name="email">
+            </div>
+
+            <div class = "form-group">
+                <input class="form-control" type="text" placeholder="Medical ID" name="cedMed">
+            </div>
+
+            <div class = "form-group">
+                <input class="form-control" type="text" placeholder="Specialty ID" name="specialtyCed" id="specialty">
+            </div>
+
+            <label for="bDay">Birthday</label>
+            <div class = "form-group">
+                <input class="form-control" type="date" placeholder="Birthday" name="bDay" id="bDay">
+            </div>
+
+            <button class="btn btn-primary" style="background-color:#16643e;" type="submit">Register</button>
+        </form>
+
+{% endblock %}
